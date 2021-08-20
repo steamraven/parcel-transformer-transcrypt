@@ -1,0 +1,28 @@
+{
+  "name": "parcel-transformer-transcrypt",
+  "version": "0.0.1-beta.0",
+  "description": "Parcel v2 plugin for Python via Transcrypt",
+  "src": "src/TranscryptTransformer.py",
+  "srcTrans": "src/__target__/TranscryptTransformer.js",
+  "main": "dist/TranscryptTransformer.js",
+  "author": "steamraven@yahoo.com",
+  "license": "MIT",
+  "engines": {
+    "node": ">= 12.0.0",
+    "parcel": "^2.0.0-rc.0"
+  },
+  "dependencies": {
+    "@parcel/diagnostic": "^2.0.0-rc.0",
+    "@parcel/plugin": "^2.0.0-rc.0",
+    "@parcel/utils": "^2.0.0-rc.0",
+    "async-mutex": "^0.3.1"
+  },
+  "devDependencies": {
+    "parcel": "^2.0.0-rc.0"
+  },
+  "scripts": {
+    "prepublishOnly": "python3 -m pip install pipenv && pipenv install --dev && pipenv run transcrypt --nomin --verbose $npm_package_src && parcel build --no-cache $npm_package_srcTrans",
+    "setup": "python3 -m pip install pipenv && pipenv install",
+    "build": "pipenv run transcrypt --nomin --verbose $npm_package_src && parcel build --no-cache --no-optimize $npm_package_srcTrans"
+  }
+}
